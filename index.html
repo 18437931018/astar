@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .div1 {
+        background-color: antiquewhite;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        border: 1px solid #F00;
+        font-size: 10px;
+    }
+
+    .div2 {
+        background-color: aqua;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        border: 1px solid #F00;
+    }
+
+    .div3 {
+        background-color: blue;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        opacity: 0.2;
+    }
+</style>
+
+<body>
+    <script>
+        const whidth = 50;
+        //   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4,
+        let grid = [
+            [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],    //0,
+            [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],    //1,
+            [0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],    //2,
+            [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],    //3,
+            [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],    //4,
+            [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],    //5,
+            [0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],    //6,
+            [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],    //7,
+            [0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],    //8,
+            [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],    //9,
+            [0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0],    //0,
+            [0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0],    //1,
+            [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],    //2,
+            [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],    //3,
+            [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]     //4,
+        ];
+        function createDiv(classs, r, c) {
+            let div = document.createElement("div");
+            div.className = classs;
+            div.id = r + '_' + c;
+            let x = r * whidth;
+            let y = c * whidth;
+            div.style.left = x + 'px';
+            div.style.top = y + 'px';
+            div.innerHTML = r + '_' + c;
+            document.body.appendChild(div);
+        }
+
+        function $(r, c) {
+            return document.getElementById(r + '_' + c);
+        }
+
+        grid.forEach((v, i) => {
+            v.forEach((v2, i2) => {
+                if (v2 === 0)
+                    createDiv('div1', i2, i);
+                else
+                    createDiv('div2', i2, i);
+            })
+        });
+
+        function creatPoint(r, c, cl) {
+            let div = document.createElement("div");
+            div.className = 'div3';
+            let x = r * whidth;
+            let y = c * whidth;
+            div.style.left = x + 'px';
+            div.style.top = y + 'px';
+            div.innerHTML = r + '_' + c;
+            div.style.background = cl;
+            document.body.appendChild(div);
+        };
+
+        let original = { r: 0, c: 0, GCost: 0, HCost: 0 };
+        let target = { r: 21, c: 5 };
+
+        let map = { x: 0, w: grid[0].length - 1, y: 0, h: grid.length - 1 };
+
+        let openList = {};
+        let closeList = {};
+
+        // 7	0   1
+        // 6		2
+        // 5	4   3
+
+        let deffR = [0, 1, 1, 1, 0, -1, -1, -1];;
+        let deffC = [-1, -1, 0, 1, 1, 1, 0, -1];
+        let CostValue = [10, 14];
+        let curCell = original;
+
+
+        function calculate() {
+
+            setTimeout(() => {
+                window['aa'] = 2
+            }, 9000)
+
+            while (true) {
+
+                if (window['aa'] == 2) {
+                    break;
+                }
+
+
+                let FCost = Number.MAX_VALUE;
+                let curObj = null;
+
+
+
+                let i = -1;
+                while (i++ < 7) {
+                    let r = curCell.r + deffR[i];
+                    let c = curCell.c + deffC[i];
+                    let key = r + '_' + c;
+                    if (r < map.x || r >= map.w || c < map.y || c >= map.h)
+                        continue;
+                    let cell = grid[c][r];
+                    if (cell === 1)
+                        continue;
+
+                    if (closeList[key])
+                        continue;
+                    if (openList[key])
+                        continue;
+
+                    let obj = { r: r, c: c, lastR: curCell.r, lastC: curCell.c, GCost: curCell.GCost + CostValue[i & 1], HCost: (Math.abs(target.r - r) + Math.abs(target.c - c)) * 10 };
+                    obj.FCost = obj.GCost + obj.HCost;
+
+
+
+                    let openObj = openList[key];
+
+                    if (obj.FCost < FCost) {
+                        FCost = obj.FCost;
+                        curObj = obj;
+                    };
+
+                    if (openObj) {
+                        if (openObj.FCost >= obj.FCost) {
+                            openObj.lastR = obj.lastR;
+                            openObj.lastC = obj.lastC;
+                            openObj.GCost = obj.GCost;
+                            openObj.HCost = obj.HCost;
+                            openObj.FCost = obj.FCost;
+                        }
+                    } else {
+                        openList[key] = obj;
+                    }
+
+                    $(r, c).innerHTML = r + '_' + c + '<br\>' + 'G' + obj.GCost + '<br\>' + 'H' + obj.HCost;
+
+
+
+                };
+
+                curCell = curObj;
+                closeList[curCell.r + '_' + curCell.c] = curCell;
+                delete openList[curCell.r + '_' + curCell.c];
+
+                creatPoint(curCell.r, curCell.c, '#fcc235');
+
+                if (curCell.r == target.r && curCell.c == target.c) {
+                    break;
+                }
+
+
+
+            };
+
+            return;
+            let result = [];
+            while (true) {
+
+                if (window['aa'] == 2) {
+                    break;
+                }
+
+                let i = -1;
+
+                let minF = Number.MAX_VALUE;
+                let curCell = target;
+                while (i++ < 7) {
+                    let r = curCell.r + deffR[i];
+                    let c = curCell.c + deffC[i];
+                    if (r < map.x || r > map.w || c < map.y || c > map.h)
+                        continue;
+                    let cell = grid[r][c];
+                    if (cell === 1)
+                        continue;
+
+                    let obj = openList[r + '_' + c];
+                    if (obj) {
+                        if (obj.FCost < minF) {
+                            minf = obj.FCost;
+                            curCell = obj;
+                        }
+                    }
+                }
+
+                result.push(curCell);
+
+                if (curCell.r == original.r && curCell.c == original.c) {
+                    break;
+                }
+            };
+
+            return result;
+
+
+        }
+
+
+    </script>
+    <div class="div3" id="role"></div>
+</body>
+
+</html>
